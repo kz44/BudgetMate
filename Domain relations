@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-04-03T19:14:00.443Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="KJyPSKrepIt0IW2yTRsy" version="24.2.1" type="github">
+<mxfile host="app.diagrams.net" modified="2024-04-03T19:56:20.548Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="Cv-9pC63Cfh-Hc9ZlMT7" version="24.2.1" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1562" dy="818" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -60,7 +60,7 @@
         <mxCell id="QbhAbgtt3sXl7tq9VEKz-25" value="" style="group" vertex="1" connectable="0" parent="QbhAbgtt3sXl7tq9VEKz-16">
           <mxGeometry x="770" y="-165" width="220" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="QbhAbgtt3sXl7tq9VEKz-17" value="Long Id&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;String name&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Transaction transaction&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="QbhAbgtt3sXl7tq9VEKz-25">
+        <mxCell id="QbhAbgtt3sXl7tq9VEKz-17" value="Long Id&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;String name&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;List&amp;lt;Transaction&amp;gt; transactions&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="QbhAbgtt3sXl7tq9VEKz-25">
           <mxGeometry width="220" height="140" as="geometry" />
         </mxCell>
         <mxCell id="QbhAbgtt3sXl7tq9VEKz-18" value="Category" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="QbhAbgtt3sXl7tq9VEKz-25">
