@@ -1,6 +1,8 @@
 package com.zk.budgetmate.enums;
 
 public enum PaymentMethodType {
-  CREDIT_CARD,
   CASH,
+  CREDIT_CARD,
+  BANK_TRANSFER,
+  MOBILE_PAYMENT,
 }
