@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Setter
@@ -21,13 +22,19 @@ public class Transaction {
 
   private Double amount;
 
-  private PaymentMethodType paymentMethodType;
-
-  private TransactionType transactionType;
-
-  //private Category category;
-
   private boolean scheduledPayment = false;
 
   private LocalDateTime transactionDate;
+
+  @Enumerated(EnumType.STRING)
+  private PaymentMethodType paymentMethodType;
+
+  @Enumerated(EnumType.STRING)
+  private TransactionType transactionType;
+
+  @OneToMany(mappedBy = "transaction")
+  private List<Category> categories ;
+
+  @ManyToOne
+  private Invoice invoice;
 }

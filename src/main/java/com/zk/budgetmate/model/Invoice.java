@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @Entity
@@ -20,5 +22,9 @@ public class Invoice {
 
   private Long balance;
 
-  // private Transaction transaction;
+  @ManyToOne
+  private User user;
+
+  @OneToMany (mappedBy = "invoice")
+  private List<Transaction> transactions;
 }

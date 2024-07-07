@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Setter
 @Getter
@@ -33,4 +34,12 @@ public class User {
   private String password;
 
   private LocalDateTime createdAt;
+
+  @OneToMany (mappedBy = "user")
+  private List<Invoice> invoices;
+
+  @PrePersist
+  protected void onCreate() {
+    createdAt = LocalDateTime.now(); //automatically create the date when it was created
+  }
 }

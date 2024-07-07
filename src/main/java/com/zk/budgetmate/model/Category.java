@@ -17,4 +17,7 @@ public class Category {
   private String name;
 
   private String description;
+
+  @ManyToOne
+  private Transaction transaction;
 }
