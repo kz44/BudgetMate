@@ -37,6 +37,8 @@ dependencies {
     testImplementation 'org.testcontainers:junit-jupiter'
     testImplementation 'org.testcontainers:postgresql'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'net.bytebuddy:byte-buddy:1.12.8'
+    implementation 'net.bytebuddy:byte-buddy-agent:1.12.8'
 }
 
 tasks.named('test') {
