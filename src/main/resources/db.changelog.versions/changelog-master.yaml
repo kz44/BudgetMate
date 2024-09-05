@@ -1,0 +1,7 @@
+databaseChangeLog:
+  # V0.0.1
+  - include:
+      #relativeChangeLogFile: true
+      file: db.changelog.versions/0.0.1/changelog.yaml
+  # V0.0.2
+  # ------

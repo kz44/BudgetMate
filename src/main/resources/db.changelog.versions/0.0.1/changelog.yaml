@@ -1,0 +1,21 @@
+# ORDER OF TABLE CREATION
+# DDL (Data Definition Language) -> create, alter, drop, truncate
+# DML (Data Manipulation Language) -> select, insert, update, delete
+
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: zkollonay
+      changes: "Initializing master changelog for version 0.0.1"
+  - include:
+    - relativeToChangelogFile: true
+      file: users/create_users_table.sql
+  - include:
+    - relativeToChangelogFile: true
+      file: invoices/create_invoices_table.sql
+  - include:
+    - relativeToChangelogFile: true
+      file: transactions/create_transactions_table.sql
+  - include:
+    - relativeToChangelogFile: true
+      file: categories/create_categories_table.sql
