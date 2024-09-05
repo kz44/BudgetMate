@@ -2,14 +2,15 @@ package com.zk.budgetmate.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
-
+@Entity
 @Setter
 @Getter
-@Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "invoices")
 public class Invoice {
 

@@ -1,12 +1,14 @@
 package com.zk.budgetmate.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+@Entity
 @Setter
 @Getter
-@Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "categories")
 public class Category {
 

@@ -3,16 +3,18 @@ package com.zk.budgetmate.model;
 import com.zk.budgetmate.enums.PaymentMethodType;
 import com.zk.budgetmate.enums.TransactionType;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 
+@Entity
 @Setter
 @Getter
-@Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "transactions")
 public class Transaction {
 
@@ -33,7 +35,7 @@ public class Transaction {
   private TransactionType transactionType;
 
   @OneToMany(mappedBy = "transaction")
-  private List<Category> categories ;
+  private List<Category> categories;
 
   @ManyToOne
   private Invoice invoice;
