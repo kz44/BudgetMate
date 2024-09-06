@@ -2,9 +2,9 @@
 --changeset zkollonay:create_categories_table splitStatements:true endDelimiter:;
 
 create table categories (
-    id bigint primary key,
+    id serial primary key,
     name varchar(50) not null,
     description text,
-    transaction_id bigint,
+    transaction_id bigint unique,
     foreign key (transaction_id) references transactions(id)
 );
