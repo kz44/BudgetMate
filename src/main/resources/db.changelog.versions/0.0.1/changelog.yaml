@@ -3,19 +3,27 @@
 # DML (Data Manipulation Language) -> select, insert, update, delete
 
 databaseChangeLog:
-  - changeSet:
-      id: 1
-      author: zkollonay
-      changes: "Initializing master changelog for version 0.0.1"
   - include:
     - relativeToChangelogFile: true
-      file: users/create_users_table.sql
+      file: users/create_users_table.sql  #Create Users table
   - include:
     - relativeToChangelogFile: true
-      file: invoices/create_invoices_table.sql
+      file: invoices/create_invoices_table.sql #Create Invoices table
   - include:
     - relativeToChangelogFile: true
-      file: transactions/create_transactions_table.sql
+      file: transactions/create_transactions_table.sql #Create Transactions table
   - include:
     - relativeToChangelogFile: true
-      file: categories/create_categories_table.sql
+      file: categories/create_categories_table.sql #Create Categories table
+  - include:
+    - relativeToChangelogFile: true
+      file: users/add_new_user.sql #Fill Users table with some basic entities
+  - include:
+    - relativeToChangelogFile: true
+      file: invoices/add_new_invoice.sql #Fill Invoices table with some basic entities
+  - include:
+    - relativeToChangelogFile: true
+      file: transactions/add_new_transaction.sql #Fill Transactions table with some basic entities
+  - include:
+    - relativeToChangelogFile: true
+      file: categories/add_new_category.sql #Fill Categories table with some basic entities
