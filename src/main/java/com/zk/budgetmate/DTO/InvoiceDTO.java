@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -19,7 +20,7 @@ public class InvoiceDTO {
   @NotBlank
   private String name;
 
-  private Long balance;
+  private BigDecimal balance;
 
   private User user;
 

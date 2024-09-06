@@ -5,6 +5,7 @@ import com.zk.budgetmate.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class Transaction {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private Double amount;
+  private BigDecimal amount;
 
   private boolean scheduledPayment = false;
 
@@ -34,8 +35,8 @@ public class Transaction {
   @Enumerated(EnumType.STRING)
   private TransactionType transactionType;
 
-  @OneToMany(mappedBy = "transaction")
-  private List<Category> categories;
+  @OneToOne(mappedBy = "transaction")
+  private Category category;
 
   @ManyToOne
   private Invoice invoice;

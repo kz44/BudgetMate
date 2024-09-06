@@ -37,7 +37,7 @@ public class User {
 
   private LocalDateTime createdAt;
 
-  @OneToMany (mappedBy = "user")
+  @OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
   private List<Invoice> invoices;
 
   @PrePersist

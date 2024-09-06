@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 @Entity
 @Setter
@@ -21,11 +22,11 @@ public class Invoice {
   @NotBlank
   private String name;
 
-  private Long balance;
+  private BigDecimal balance;
 
   @ManyToOne
   private User user;
 
-  @OneToMany (mappedBy = "invoice")
+  @OneToMany (mappedBy = "invoice", cascade = CascadeType.ALL)
   private List<Transaction> transactions;
 }

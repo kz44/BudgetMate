@@ -8,6 +8,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import java.util.List;
 @Builder
 public class TransactionDTO {
 
-  private Double amount;
+  private BigDecimal amount;
 
   private boolean scheduledPayment = false;
 
@@ -29,7 +30,7 @@ public class TransactionDTO {
   @Enumerated(EnumType.STRING)
   private TransactionType transactionType;
 
-  private List<Category> categories;
+  private Category category;
 
   private Invoice invoice;
 }

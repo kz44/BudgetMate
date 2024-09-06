@@ -20,6 +20,6 @@ public class Category {
 
   private String description;
 
-  @ManyToOne
+  @OneToOne
   private Transaction transaction;
 }
