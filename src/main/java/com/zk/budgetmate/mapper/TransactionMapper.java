@@ -18,6 +18,7 @@ public class TransactionMapper {
   public TransactionDTO toDTO(Transaction entity) {
 
     return TransactionDTO.builder()
+        .id(entity.getId())
         .amount(entity.getAmount())
         .scheduledPayment(entity.isScheduledPayment())
         .transactionDate(entity.getTransactionDate())
@@ -38,6 +39,7 @@ public class TransactionMapper {
 
   public Transaction toEntity(TransactionDTO dto) {
     return Transaction.builder()
+        .id(dto.getId())
         .amount(dto.getAmount())
         .scheduledPayment(dto.isScheduledPayment())
         .transactionDate(dto.getTransactionDate())

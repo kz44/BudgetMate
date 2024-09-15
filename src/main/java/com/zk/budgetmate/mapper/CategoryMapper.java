@@ -18,6 +18,7 @@ public class CategoryMapper {
 
   public CategoryDTO toDto(Category entity) {
     return CategoryDTO.builder()
+        .id(entity.getId())
         .name(entity.getName())
         .description(entity.getDescription())
         .transaction(entity.getTransaction())
@@ -32,6 +33,7 @@ public class CategoryMapper {
    */
   public Category toEntity(CategoryDTO dto) {
     return Category.builder()
+        .id(dto.getId())
         .name(dto.getName())
         .description(dto.getDescription())
         .transaction(dto.getTransaction())

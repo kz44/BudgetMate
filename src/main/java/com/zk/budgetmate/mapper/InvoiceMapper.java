@@ -18,6 +18,7 @@ public class InvoiceMapper {
 
   public InvoiceDTO toDTO(Invoice entity) {
     return InvoiceDTO.builder()
+        .id(entity.getId())
         .name(entity.getName())
         .balance(entity.getBalance())
         .user(entity.getUser())
@@ -35,6 +36,7 @@ public class InvoiceMapper {
 
   public Invoice toEntity(InvoiceDTO dto) {
     return Invoice.builder()
+        .id(dto.getId())
         .name(dto.getName())
         .balance(dto.getBalance())
         .user(dto.getUser())
