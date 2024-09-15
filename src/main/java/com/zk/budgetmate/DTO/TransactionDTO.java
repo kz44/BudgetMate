@@ -18,6 +18,8 @@ import java.util.List;
 @Builder
 public class TransactionDTO {
 
+  private Long id;
+
   private BigDecimal amount;
 
   private boolean scheduledPayment = false;

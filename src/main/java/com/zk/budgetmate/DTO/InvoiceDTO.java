@@ -17,6 +17,8 @@ import java.util.List;
 @Builder
 public class InvoiceDTO {
 
+  private Long id;
+
   @NotBlank
   private String name;
 
