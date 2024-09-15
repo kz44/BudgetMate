@@ -32,5 +32,5 @@ public class TransactionDTO {
   @Enumerated(EnumType.STRING)
   private TransactionType transactionType;
 
-  private Invoice invoice;
+  private String invoiceName;
 }

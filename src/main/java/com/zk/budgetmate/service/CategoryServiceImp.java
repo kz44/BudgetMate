@@ -88,7 +88,6 @@ public class CategoryServiceImp implements CategoryService {
     if (categoryRepository.existsCategoryByName(dto.getName())) {
       throw new BadAttributeValueExpException("Category is already exist with the given name");
     }
-
     return categoryMapper.toDto(categoryRepository.save(categoryMapper.toEntity(dto)));
   }
 

@@ -13,4 +13,8 @@ public class InvoiceServiceImp implements InvoiceService {
   private final InvoiceRepository invoiceRepository;
   private final InvoiceMapper invoiceMapper;
 
+
+  public Invoice findByName(String name) {
+    return invoiceRepository.findByName(name);
+  }
 }
