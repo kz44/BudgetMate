@@ -21,7 +21,6 @@ public class CategoryMapper {
         .id(entity.getId())
         .name(entity.getName())
         .description(entity.getDescription())
-        .transaction(entity.getTransaction())
         .build();
   }
 
@@ -36,7 +35,6 @@ public class CategoryMapper {
         .id(dto.getId())
         .name(dto.getName())
         .description(dto.getDescription())
-        .transaction(dto.getTransaction())
         .build();
   }
 }

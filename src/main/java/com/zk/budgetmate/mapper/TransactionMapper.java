@@ -24,7 +24,6 @@ public class TransactionMapper {
         .transactionDate(entity.getTransactionDate())
         .paymentMethodType(entity.getPaymentMethodType())
         .transactionType(entity.getTransactionType())
-        .category(entity.getCategory())
         .invoice(entity.getInvoice())
         .build();
   }
@@ -45,7 +44,6 @@ public class TransactionMapper {
         .transactionDate(dto.getTransactionDate())
         .paymentMethodType(dto.getPaymentMethodType())
         .transactionType(dto.getTransactionType())
-        .category(dto.getCategory())
         .invoice(dto.getInvoice())
         .build();
   }

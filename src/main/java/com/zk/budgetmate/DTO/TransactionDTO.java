@@ -32,7 +32,5 @@ public class TransactionDTO {
   @Enumerated(EnumType.STRING)
   private TransactionType transactionType;
 
-  private Category category;
-
   private Invoice invoice;
 }
