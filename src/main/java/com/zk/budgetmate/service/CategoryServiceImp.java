@@ -19,14 +19,9 @@ public class CategoryServiceImp implements CategoryService {
   private final CategoryMapper categoryMapper;
 
   /**
-   * Retrieves all categories and converts them into a list of CategoryDTO objects.
-   * <p>
-   * This method fetches all the Category entities from the repository,
-   * maps them to CategoryDTO objects using the custom transform CategoryMapper,
-   * and returns the list of these DTOs.
-   * </p>
+   * Retrieve all categories.
    *
-   * @return list of CategoryDTO representing all categories
+   * @return a list of all categories.
    */
   @Override
   public List<CategoryDTO> getAllCategories() {
@@ -37,14 +32,11 @@ public class CategoryServiceImp implements CategoryService {
   }
 
   /**
-   * Retrieves a category and converts into a CategoryDTO objects.
-   * <p>
-   * This method fetches a Category entity by the given id from the repository,
-   * maps it to a CategoryDTO object using the custom transform CategoryMapper,
-   * and returns a CategoryDTO.
-   * </p>
+   * Retrieve a category by ID.
    *
-   * @return a CategoryDTO by the given id representing category entity.
+   * @param id The ID of the category to retrieve.
+   * @return The category with the specified ID.
+   * @throws ResourceNotFoundException If the category with the given ID is not found.
    */
   @Override
   public CategoryDTO getCategoryById(Long id) {
@@ -54,16 +46,11 @@ public class CategoryServiceImp implements CategoryService {
   }
 
   /**
-   * Updates an existing category based on the provided CategoryDTO.
-   * <p>
-   * This method first checks if the category with the given ID exists.
-   * If the category exists, it converts the CategoryDTO to an entity using the categoryMapper.
-   * Updates the category, and then returns the updated entity as a DTO.
-   * </p>
+   * Update an existing category.
    *
-   * @param dto CategoryDTO containing the updated category data.
-   * @return The updated CategoryDTO after the changes have been persisted.
-   * @throws IllegalArgumentException If the provided CategoryDTO is null or invalid.
+   * @param dto The updated category data.
+   * @return The updated category.
+   * @throws ResourceNotFoundException If the category with the given ID is not found.
    */
   @Override
   public CategoryDTO updateCategoryById(CategoryDTO dto) {
@@ -75,6 +62,13 @@ public class CategoryServiceImp implements CategoryService {
   }
 
 
+  /**
+   * Save a new category.
+   *
+   * @param dto The category data to be saved.
+   * @return The newly created category.
+   * @throws DuplicateResourceException If a category with the given name already exists.
+   */
   @Override
   public CategoryDTO saveNewCategory(CategoryDTO dto) {
     if (categoryRepository.existsByName(dto.getName())) {
@@ -83,7 +77,12 @@ public class CategoryServiceImp implements CategoryService {
     return categoryMapper.toDto(categoryRepository.save(categoryMapper.toEntity(dto)));
   }
 
-
+  /**
+   * Delete a category by ID.
+   *
+   * @param id The ID of the category to delete.
+   * @throws ResourceNotFoundException If the category with the given ID is not found.
+   */
   @Override
   public void deleteCategoryById(Long id) {
     if (!categoryRepository.existsById(id)) {
