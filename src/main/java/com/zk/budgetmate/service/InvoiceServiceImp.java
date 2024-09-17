@@ -19,6 +19,12 @@ public class InvoiceServiceImp implements InvoiceService {
   private final InvoiceMapper invoiceMapper;
 
 
+  /**
+   * Retrieves an invoice by name.
+   *
+   * @param name The name of the invoice to retrieve.
+   * @return The invoice with the specified name, or null if no such invoice exists.
+   */
   public Invoice findByName(String name) {
     return invoiceRepository.findByName(name);
   }
