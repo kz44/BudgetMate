@@ -1,9 +1,14 @@
 package com.zk.budgetmate.controller;
 
+import com.zk.budgetmate.DTO.InvoiceDTO;
 import com.zk.budgetmate.service.InvoiceService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -11,4 +16,25 @@ import org.springframework.web.bind.annotation.RestController;
 public class InvoiceController {
 
   private final InvoiceService invoiceService;
+
+  @GetMapping
+  public ResponseEntity<List<InvoiceDTO>> getAllInvoices() {
+    return ResponseEntity.ok(invoiceService.getAllInvoices());
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<Optional<InvoiceDTO>> getInvoiceById(@PathVariable Long id) {
+    return ResponseEntity.ok(invoiceService.getInvoiceById(id));
+  }
+
+  @PostMapping
+  public ResponseEntity<InvoiceDTO> saveNewInvoice (@RequestBody InvoiceDTO dto) {
+    return ResponseEntity.status(HttpStatus.CREATED).body(invoiceService.saveNewInvoice(dto));
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<String> deleteInvoiceById(@PathVariable Long id) {
+    invoiceService.deleteInvoiceById(id);
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Invoice was successfully deleted");
+  }
 }

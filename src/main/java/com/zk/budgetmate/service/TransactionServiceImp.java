@@ -38,8 +38,7 @@ public class TransactionServiceImp implements TransactionService{
     getTransactionById(dto.getId());
     return transactionMapper.toDTO(transactionRepository.save(transactionMapper.toEntity(dto)));
   }
-
-  //TODO: doesn't save because of name relations between Category and Transaction entity!
+  
   @Override
   public TransactionDTO saveNewTransaction(TransactionDTO dto) throws BadAttributeValueExpException {
     if (transactionRepository.existsTransactionById(dto.getId())) {

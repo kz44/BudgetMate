@@ -2,12 +2,15 @@ package com.zk.budgetmate.mapper;
 
 import com.zk.budgetmate.DTO.InvoiceDTO;
 import com.zk.budgetmate.model.Invoice;
+import com.zk.budgetmate.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
 public class InvoiceMapper {
+
+  private final UserService userService;
 
   /**
    * Converts an Invoice entity to an InvoiceDTO.
@@ -21,8 +24,7 @@ public class InvoiceMapper {
         .id(entity.getId())
         .name(entity.getName())
         .balance(entity.getBalance())
-        .user(entity.getUser())
-        .transactions(entity.getTransactions())
+        .owner(entity.getUser() != null ? entity.getUser().getUsername() : null)
         .build();
   }
 
@@ -39,8 +41,7 @@ public class InvoiceMapper {
         .id(dto.getId())
         .name(dto.getName())
         .balance(dto.getBalance())
-        .user(dto.getUser())
-        .transactions(dto.getTransactions())
+        .user(userService.getUserByUsername(dto.getOwner()))
         .build();
   }
 }

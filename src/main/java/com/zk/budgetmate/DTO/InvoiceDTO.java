@@ -24,7 +24,5 @@ public class InvoiceDTO {
 
   private BigDecimal balance;
 
-  private User user;
-
-  private List<Transaction> transactions;
+  private String owner;
 }
