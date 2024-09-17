@@ -2,15 +2,16 @@ package com.zk.budgetmate.DTO;
 
 import com.zk.budgetmate.enums.PaymentMethodType;
 import com.zk.budgetmate.enums.TransactionType;
-import com.zk.budgetmate.model.Category;
-import com.zk.budgetmate.model.Invoice;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import lombok.*;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -32,5 +33,6 @@ public class TransactionDTO {
   @Enumerated(EnumType.STRING)
   private TransactionType transactionType;
 
+  @NotBlank
   private String invoiceName;
 }

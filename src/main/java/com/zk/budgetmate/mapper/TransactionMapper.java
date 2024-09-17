@@ -3,7 +3,6 @@ package com.zk.budgetmate.mapper;
 import com.zk.budgetmate.DTO.TransactionDTO;
 import com.zk.budgetmate.model.Invoice;
 import com.zk.budgetmate.model.Transaction;
-import com.zk.budgetmate.repository.InvoiceRepository;
 import com.zk.budgetmate.service.InvoiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

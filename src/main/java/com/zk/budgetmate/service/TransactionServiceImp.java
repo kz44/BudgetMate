@@ -1,6 +1,8 @@
 package com.zk.budgetmate.service;
 
 import com.zk.budgetmate.DTO.TransactionDTO;
+import com.zk.budgetmate.exception.DuplicateResourceException;
+import com.zk.budgetmate.exception.ResourceNotFoundException;
 import com.zk.budgetmate.mapper.TransactionMapper;
 import com.zk.budgetmate.model.Invoice;
 import com.zk.budgetmate.repository.TransactionRepository;
@@ -12,7 +14,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class TransactionServiceImp implements TransactionService{
+public class TransactionServiceImp implements TransactionService {
 
   private final TransactionRepository transactionRepository;
   private final TransactionMapper transactionMapper;
@@ -30,7 +32,7 @@ public class TransactionServiceImp implements TransactionService{
   public TransactionDTO getTransactionById(Long id) {
     return transactionRepository.findById(id)
         .map(transactionMapper::toDTO)
-        .orElseThrow();
+        .orElseThrow(() -> new ResourceNotFoundException("Transaction was not found with the given id: " + id));
   }
 
   @Override
@@ -38,16 +40,16 @@ public class TransactionServiceImp implements TransactionService{
     getTransactionById(dto.getId());
     return transactionMapper.toDTO(transactionRepository.save(transactionMapper.toEntity(dto)));
   }
-  
+
   @Override
   public TransactionDTO saveNewTransaction(TransactionDTO dto) throws BadAttributeValueExpException {
-    if (transactionRepository.existsTransactionById(dto.getId())) {
-      throw new BadAttributeValueExpException("Category is already exist with the given name");
+    if (transactionRepository.existsById(dto.getId())) {
+      throw new DuplicateResourceException("Transaction already exists with the given id: " + dto.getId());
     }
 
     Invoice invoice = invoiceService.findByName(dto.getInvoiceName());
     if (invoice == null) {
-      throw new RuntimeException("Invoice with the given name: " + dto.getInvoiceName() + " was not found");
+      throw new ResourceNotFoundException("Invoice with the given name: " + dto.getInvoiceName() + " was not found");
     }
 
     return transactionMapper.toDTO(transactionRepository.save(transactionMapper.toEntity(dto)));
