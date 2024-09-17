@@ -81,14 +81,15 @@ public class CategoryController {
   /**
    * Handles HTTP DELETE request to delete a Category by the given id.
    * <p>
-   *   This endpoint returns a message if the Category was successfully deleted.
+   * This endpoint returns a message if the Category was successfully deleted.
    * </p>
+   *
    * @param id specify the category
    * @return a ResponseEntity with no content, just a message about Category was deleted.
    */
   @DeleteMapping("/{id}")
   public ResponseEntity<String> deleteCategoryById(@PathVariable Long id) {
     categoryService.deleteCategoryById(id);
-    return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Category was successfully deleted");
+    return ResponseEntity.noContent().build();
   }
 }

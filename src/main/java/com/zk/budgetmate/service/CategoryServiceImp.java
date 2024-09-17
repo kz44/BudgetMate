@@ -1,6 +1,8 @@
 package com.zk.budgetmate.service;
 
 import com.zk.budgetmate.DTO.CategoryDTO;
+import com.zk.budgetmate.exception.DuplicateResourceException;
+import com.zk.budgetmate.exception.ResourceNotFoundException;
 import com.zk.budgetmate.mapper.CategoryMapper;
 import com.zk.budgetmate.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -48,7 +50,7 @@ public class CategoryServiceImp implements CategoryService {
   public CategoryDTO getCategoryById(Long id) {
     return categoryRepository.findById(id)
         .map(categoryMapper::toDto)
-        .orElseThrow(); // Some exception message
+        .orElseThrow(() -> new ResourceNotFoundException("Category was not found with the given id: " + id));
   }
 
   /**
@@ -65,8 +67,10 @@ public class CategoryServiceImp implements CategoryService {
    */
   @Override
   public CategoryDTO updateCategoryById(CategoryDTO dto) {
-    // Check if the category exist
-    getCategoryById(dto.getId());
+    if (dto.getId() == null || !categoryRepository.existsById(dto.getId())) {
+      throw new ResourceNotFoundException("Category was not found with the given id: " + dto.getId());
+    }
+
     return categoryMapper.toDto(categoryRepository.save(categoryMapper.toEntity(dto)));
   }
 
@@ -84,9 +88,8 @@ public class CategoryServiceImp implements CategoryService {
    */
   @Override
   public CategoryDTO saveNewCategory(CategoryDTO dto) throws BadAttributeValueExpException {
-    // Check if the category exist
-    if (categoryRepository.existsCategoryByName(dto.getName())) {
-      throw new BadAttributeValueExpException("Category is already exist with the given name");
+    if (categoryRepository.existsByName(dto.getName())) {
+      throw new DuplicateResourceException("Category already exists with the name: " + dto.getName());
     }
     return categoryMapper.toDto(categoryRepository.save(categoryMapper.toEntity(dto)));
   }
@@ -94,16 +97,17 @@ public class CategoryServiceImp implements CategoryService {
   /**
    * Delete a Category by the given id.
    * <p>
-   *   This method first checks if the category exist with the given id.
-   *   Delete Category by the given id.
+   * This method first checks if the category exist with the given id.
+   * Delete Category by the given id.
    * </p>
    *
    * @param id specify the Category.
    */
   @Override
   public void deleteCategoryById(Long id) {
-    // Check if category exist
-    getCategoryById(id);
+    if (!categoryRepository.existsById(id)) {
+      throw new ResourceNotFoundException("Category not found with id: " + id);
+    }
     categoryRepository.deleteById(id);
   }
 

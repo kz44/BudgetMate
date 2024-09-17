@@ -1,6 +1,6 @@
 package com.zk.budgetmate.DTO;
 
-import com.zk.budgetmate.model.Transaction;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +14,7 @@ public class CategoryDTO {
 
   private Long id;
 
+  @NotBlank
   private String name;
 
   private String description;
