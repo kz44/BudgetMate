@@ -4,7 +4,6 @@ import com.zk.budgetmate.DTO.InvoiceDTO;
 import com.zk.budgetmate.model.Invoice;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface InvoiceService {
 
@@ -12,7 +11,7 @@ public interface InvoiceService {
 
   List<InvoiceDTO> getAllInvoices();
 
-  Optional<InvoiceDTO> getInvoiceById(Long id);
+  InvoiceDTO getInvoiceById(Long id);
 
   InvoiceDTO saveNewInvoice(InvoiceDTO dto);
 

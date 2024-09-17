@@ -1,7 +1,9 @@
 package com.zk.budgetmate.mapper;
 
 import com.zk.budgetmate.DTO.InvoiceDTO;
+import com.zk.budgetmate.exception.ResourceNotFoundException;
 import com.zk.budgetmate.model.Invoice;
+import com.zk.budgetmate.model.User;
 import com.zk.budgetmate.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -37,11 +39,17 @@ public class InvoiceMapper {
    */
 
   public Invoice toEntity(InvoiceDTO dto) {
+
+    User user = userService.getUserByUsername(dto.getOwner());
+    if (user == null) {
+      throw new ResourceNotFoundException("Owner not found with username: " + dto.getOwner());
+    }
+
     return Invoice.builder()
         .id(dto.getId())
         .name(dto.getName())
         .balance(dto.getBalance())
-        .user(userService.getUserByUsername(dto.getOwner()))
+        .user(user)
         .build();
   }
 }

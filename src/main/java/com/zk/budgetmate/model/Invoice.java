@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+
 @Entity
 @Setter
 @Getter
@@ -27,6 +28,6 @@ public class Invoice {
   @ManyToOne
   private User user;
 
-  @OneToMany (mappedBy = "invoice", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL)
   private List<Transaction> transactions;
 }

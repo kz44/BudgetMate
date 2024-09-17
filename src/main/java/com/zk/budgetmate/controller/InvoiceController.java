@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,18 +22,18 @@ public class InvoiceController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Optional<InvoiceDTO>> getInvoiceById(@PathVariable Long id) {
+  public ResponseEntity<InvoiceDTO> getInvoiceById(@PathVariable Long id) {
     return ResponseEntity.ok(invoiceService.getInvoiceById(id));
   }
 
   @PostMapping
-  public ResponseEntity<InvoiceDTO> saveNewInvoice (@RequestBody InvoiceDTO dto) {
+  public ResponseEntity<InvoiceDTO> saveNewInvoice(@RequestBody InvoiceDTO dto) {
     return ResponseEntity.status(HttpStatus.CREATED).body(invoiceService.saveNewInvoice(dto));
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<String> deleteInvoiceById(@PathVariable Long id) {
     invoiceService.deleteInvoiceById(id);
-    return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Invoice was successfully deleted");
+    return ResponseEntity.noContent().build();
   }
 }

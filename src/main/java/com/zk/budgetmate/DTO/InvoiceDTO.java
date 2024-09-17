@@ -1,7 +1,5 @@
 package com.zk.budgetmate.DTO;
 
-import com.zk.budgetmate.model.Transaction;
-import com.zk.budgetmate.model.User;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -24,5 +21,6 @@ public class InvoiceDTO {
 
   private BigDecimal balance;
 
+  @NotBlank
   private String owner;
 }
