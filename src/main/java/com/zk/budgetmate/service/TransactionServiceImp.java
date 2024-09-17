@@ -42,7 +42,7 @@ public class TransactionServiceImp implements TransactionService {
   }
 
   @Override
-  public TransactionDTO saveNewTransaction(TransactionDTO dto) throws BadAttributeValueExpException {
+  public TransactionDTO saveNewTransaction(TransactionDTO dto){
     if (transactionRepository.existsById(dto.getId())) {
       throw new DuplicateResourceException("Transaction already exists with the given id: " + dto.getId());
     }

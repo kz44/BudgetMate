@@ -12,7 +12,7 @@ public interface TransactionService {
 
   TransactionDTO updateTransactionById(TransactionDTO dto);
 
-  TransactionDTO saveNewTransaction(TransactionDTO dto) throws BadAttributeValueExpException;
+  TransactionDTO saveNewTransaction(TransactionDTO dto);
 
   void deleteTransactionById(Long id);
 }

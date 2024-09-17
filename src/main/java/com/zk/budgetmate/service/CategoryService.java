@@ -13,7 +13,7 @@ public interface CategoryService {
 
   CategoryDTO updateCategoryById(CategoryDTO dto);
 
-  CategoryDTO saveNewCategory(CategoryDTO dto) throws BadAttributeValueExpException;
+  CategoryDTO saveNewCategory(CategoryDTO dto);
 
   void deleteCategoryById(Long id);
 }

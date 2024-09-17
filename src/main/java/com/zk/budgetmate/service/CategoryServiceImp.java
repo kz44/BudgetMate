@@ -74,35 +74,16 @@ public class CategoryServiceImp implements CategoryService {
     return categoryMapper.toDto(categoryRepository.save(categoryMapper.toEntity(dto)));
   }
 
-  /**
-   * Save a new Category based on the provided CategoryDTO
-   * <p>
-   * This method first checks if the category with the given name exists.
-   * If the category exist, throw BadAttributeValueExpException, with some description.
-   * Save a new Category, and returns the newly created entity as a DTO.
-   * </p>
-   *
-   * @param dto CategoryDTO containing the newly created category data.
-   * @return The newly created Category as CategoryDTO.
-   * @throws BadAttributeValueExpException if the provided Category exists by name.
-   */
+
   @Override
-  public CategoryDTO saveNewCategory(CategoryDTO dto) throws BadAttributeValueExpException {
+  public CategoryDTO saveNewCategory(CategoryDTO dto) {
     if (categoryRepository.existsByName(dto.getName())) {
       throw new DuplicateResourceException("Category already exists with the name: " + dto.getName());
     }
     return categoryMapper.toDto(categoryRepository.save(categoryMapper.toEntity(dto)));
   }
 
-  /**
-   * Delete a Category by the given id.
-   * <p>
-   * This method first checks if the category exist with the given id.
-   * Delete Category by the given id.
-   * </p>
-   *
-   * @param id specify the Category.
-   */
+
   @Override
   public void deleteCategoryById(Long id) {
     if (!categoryRepository.existsById(id)) {
