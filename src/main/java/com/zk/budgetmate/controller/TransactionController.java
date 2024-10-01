@@ -1,6 +1,7 @@
 package com.zk.budgetmate.controller;
 
 import com.zk.budgetmate.DTO.TransactionDTO;
+import com.zk.budgetmate.DTO.TransactionFilterDTO;
 import com.zk.budgetmate.service.TransactionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -73,5 +74,10 @@ public class TransactionController {
   public ResponseEntity<String> deleteTransactionById(@PathVariable Long id) {
     transactionService.deleteTransactionById(id);
     return ResponseEntity.noContent().build();
+  }
+
+  @PostMapping("/filter")
+  public ResponseEntity<List<TransactionDTO>> filterTransactions (@RequestBody TransactionFilterDTO dto) {
+    return ResponseEntity.ok().body(transactionService.filterTransaction(dto));
   }
 }

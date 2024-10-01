@@ -4,7 +4,6 @@ import com.zk.budgetmate.enums.PaymentMethodType;
 import com.zk.budgetmate.enums.TransactionType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,25 +16,21 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TransactionDTO {
+public class TransactionFilterDTO {
 
-  private Long id;
+  private LocalDateTime minDate;
 
-  private BigDecimal amount;
+  private LocalDateTime maxDate;
 
-  private boolean scheduledPayment = false;
+  private BigDecimal minAmount;
 
-  private LocalDateTime transactionDate;
+  private BigDecimal maxAmount;
 
   @Enumerated(EnumType.STRING)
   private PaymentMethodType paymentMethodType;
 
+  private Boolean scheduledPayment;
+
   @Enumerated(EnumType.STRING)
   private TransactionType transactionType;
-
-  @NotBlank
-  private String invoiceName;
-
-  @NotBlank
-  private String categoryName;
 }

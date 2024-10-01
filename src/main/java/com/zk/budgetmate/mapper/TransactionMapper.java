@@ -1,8 +1,10 @@
 package com.zk.budgetmate.mapper;
 
 import com.zk.budgetmate.DTO.TransactionDTO;
+import com.zk.budgetmate.model.Category;
 import com.zk.budgetmate.model.Invoice;
 import com.zk.budgetmate.model.Transaction;
+import com.zk.budgetmate.service.CategoryService;
 import com.zk.budgetmate.service.InvoiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -12,6 +14,9 @@ import org.springframework.stereotype.Component;
 public class TransactionMapper {
 
   private final InvoiceService invoiceService;
+  private final CategoryService categoryService;
+
+
 
   /**
    * Converts a Transaction entity to a TransactionDTO.
@@ -28,7 +33,8 @@ public class TransactionMapper {
         .transactionDate(entity.getTransactionDate())
         .paymentMethodType(entity.getPaymentMethodType())
         .transactionType(entity.getTransactionType())
-        .invoiceName(entity.getInvoice() != null ? entity.getInvoice().getName() : null)
+        .invoiceName(entity.getInvoice() != null ? entity.getInvoice().getName() : "It hasn't got invoice")
+        .categoryName(entity.getCategory() != null ? entity.getCategory().getName() : "It hasn't got category")
         .build();
   }
 
@@ -43,6 +49,7 @@ public class TransactionMapper {
   public Transaction toEntity(TransactionDTO dto) {
 
     Invoice invoice = invoiceService.findByName(dto.getInvoiceName());
+    Category category = categoryService.findByName(dto.getCategoryName());
 
     return Transaction.builder()
         .id(dto.getId())
@@ -52,6 +59,7 @@ public class TransactionMapper {
         .paymentMethodType(dto.getPaymentMethodType())
         .transactionType(dto.getTransactionType())
         .invoice(invoice)
+        .category(category)
         .build();
   }
 }

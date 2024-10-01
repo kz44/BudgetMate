@@ -1,6 +1,7 @@
 package com.zk.budgetmate.service;
 
 import com.zk.budgetmate.DTO.TransactionDTO;
+import com.zk.budgetmate.DTO.TransactionFilterDTO;
 import com.zk.budgetmate.exception.DuplicateResourceException;
 import com.zk.budgetmate.exception.ResourceNotFoundException;
 import com.zk.budgetmate.mapper.TransactionMapper;
@@ -92,4 +93,20 @@ public class TransactionServiceImp implements TransactionService {
     getTransactionById(id);
     transactionRepository.deleteById(id);
   }
+
+  @Override
+  public List<TransactionDTO> filterTransaction(TransactionFilterDTO dto) {
+    return transactionRepository.findFilteredTransactions(dto.getMinDate(),
+            dto.getMaxDate(),
+            dto.getMinAmount(),
+            dto.getMaxAmount(),
+            dto.getPaymentMethodType(),
+            dto.getScheduledPayment(),
+            dto.getTransactionType())
+        .stream()
+        .map(transactionMapper::toDTO)
+        .toList();
+  }
+
+
 }

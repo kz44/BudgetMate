@@ -4,6 +4,8 @@ import com.zk.budgetmate.DTO.CategoryDTO;
 import com.zk.budgetmate.exception.DuplicateResourceException;
 import com.zk.budgetmate.exception.ResourceNotFoundException;
 import com.zk.budgetmate.mapper.CategoryMapper;
+import com.zk.budgetmate.model.Category;
+import com.zk.budgetmate.model.Invoice;
 import com.zk.budgetmate.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,11 @@ public class CategoryServiceImp implements CategoryService {
 
   private final CategoryRepository categoryRepository;
   private final CategoryMapper categoryMapper;
+
+
+  public Category findByName(String name) {
+    return categoryRepository.findByName(name);
+  }
 
   /**
    * Retrieve all categories.
