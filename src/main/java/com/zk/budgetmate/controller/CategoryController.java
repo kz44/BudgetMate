@@ -4,7 +4,6 @@ import com.zk.budgetmate.DTO.CategoryDTO;
 import com.zk.budgetmate.service.CategoryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +34,7 @@ public class CategoryController {
    * @return The category with the specified ID.
    */
   @GetMapping("/{id}")
-  public ResponseEntity<CategoryDTO> getCategoryById(@PathVariable Long id) {
+  public ResponseEntity<CategoryDTO> getCategoryById(@PathVariable final Long id) {
     return ResponseEntity.ok(categoryService.getCategoryById(id));
   }
 
@@ -48,7 +47,7 @@ public class CategoryController {
    * @return The updated category.
    */
   @PutMapping("/{id}")
-  public ResponseEntity<CategoryDTO> updateCategoryById(@PathVariable Long id,
+  public ResponseEntity<CategoryDTO> updateCategoryById(@PathVariable final Long id,
                                                         @Valid @RequestBody CategoryDTO dto) {
     dto.setId(id);
     return ResponseEntity.ok(categoryService.updateCategoryById(dto));
@@ -62,8 +61,8 @@ public class CategoryController {
    * @return The created category.
    */
   @PostMapping()
-  public ResponseEntity<CategoryDTO> saveNewCategory(@RequestBody CategoryDTO dto) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.saveNewCategory(dto));
+  public ResponseEntity<CategoryDTO> saveNewCategory(@Valid @RequestBody CategoryDTO dto) {
+    return ResponseEntity.ok(categoryService.saveNewCategory(dto));
   }
 
   /**
@@ -74,7 +73,7 @@ public class CategoryController {
    */
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<String> deleteCategoryById(@PathVariable Long id) {
+  public ResponseEntity<String> deleteCategoryById(@PathVariable final Long id) {
     categoryService.deleteCategoryById(id);
     return ResponseEntity.noContent().build();
   }

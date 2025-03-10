@@ -5,12 +5,10 @@ import com.zk.budgetmate.exception.DuplicateResourceException;
 import com.zk.budgetmate.exception.ResourceNotFoundException;
 import com.zk.budgetmate.mapper.CategoryMapper;
 import com.zk.budgetmate.model.Category;
-import com.zk.budgetmate.model.Invoice;
 import com.zk.budgetmate.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.management.BadAttributeValueExpException;
 import java.util.List;
 
 @Service
