@@ -94,6 +94,15 @@ public class TransactionServiceImp implements TransactionService {
     transactionRepository.deleteById(id);
   }
 
+
+  /**
+   * Filters transactions based on the specified criteria provided in the {@link TransactionFilterDTO}.
+   * It retrieves transactions from the repository that match the filter conditions and maps them to DTOs.
+   *
+   * @param dto The {@link TransactionFilterDTO} containing filter criteria such as date range, amount range,
+   *            payment method type, scheduled payment status, and transaction type.
+   * @return A list of {@link TransactionDTO} objects that match the specified filter criteria.
+   */
   @Override
   public List<TransactionDTO> filterTransaction(TransactionFilterDTO dto) {
     return transactionRepository.findFilteredTransactions(dto.getMinDate(),

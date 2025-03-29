@@ -26,7 +26,8 @@ public class InvoiceServiceImp implements InvoiceService {
    * @return The invoice with the specified name, or null if no such invoice exists.
    */
   public Invoice findByName(String name) {
-    return invoiceRepository.findByName(name);
+    return invoiceRepository.findByName(name)
+        .orElseThrow(() -> new ResourceNotFoundException("Invoice not found with the given name: " + name));
   }
 
   /**
@@ -56,6 +57,13 @@ public class InvoiceServiceImp implements InvoiceService {
         .orElseThrow(() -> new ResourceNotFoundException("Invoice not found with the given id: " + id));
   }
 
+  @Override
+  public InvoiceDTO getInvoiceByName(String name) {
+    return invoiceRepository.findByName(name)
+        .map(invoiceMapper::toDTO)
+        .orElseThrow(() -> new ResourceNotFoundException("Invoice not found with the given name: " + name));
+  }
+
   /**
    * Save a new invoice.
    *
@@ -68,6 +76,20 @@ public class InvoiceServiceImp implements InvoiceService {
     if (invoiceRepository.existsByName(dto.getName())) {
       throw new DuplicateResourceException("Invoice with the given name: " + dto.getName() + " is already exists");
     }
+    return invoiceMapper.toDTO(invoiceRepository.save(invoiceMapper.toEntity(dto)));
+  }
+
+
+  /**
+   * Updates an existing invoice.
+   *
+   * @param dto The invoice data transfer object (DTO) containing the updated information.
+   * @return The updated invoice as a DTO.
+   * @throws ResourceNotFoundException If the invoice with the given ID does not exist.
+   */
+  @Override
+  public InvoiceDTO updateInvoiceById(InvoiceDTO dto) {
+    getInvoiceById(dto.getId());
     return invoiceMapper.toDTO(invoiceRepository.save(invoiceMapper.toEntity(dto)));
   }
 

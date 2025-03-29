@@ -76,6 +76,14 @@ public class TransactionController {
     return ResponseEntity.noContent().build();
   }
 
+
+  /**
+   * Filters transactions based on the given filter criteria.
+   *
+   * @param dto The {@link TransactionFilterDTO} containing filter criteria such as date range, amount, or transaction type.
+   * @return A {@link ResponseEntity} containing a list of {@link TransactionDTO} objects that match the filter criteria.
+   */
+
   @PostMapping("/filter")
   public ResponseEntity<List<TransactionDTO>> filterTransactions (@RequestBody TransactionFilterDTO dto) {
     return ResponseEntity.ok().body(transactionService.filterTransaction(dto));

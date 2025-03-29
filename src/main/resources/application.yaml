@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: BudgetMate
+
+  datasource:
+    url: jdbc:postgresql://localhost:26257/my_database
+    username: root
+    password: password
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        use_sql_comments: true
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db.changelog.versions/changelog-master.yaml
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: dev-bjg0ei8c7tjnsovx.us.auth0.com
+          audiences: https://hello-world.example.com
+
+logging:
+  level:
+    org:
+      springframework:
+        web: debug
+        security: TRACE
+      hibernate:
+        jpa: debug
+        jdbc: debug
+    com:
+      zk:
+        budgetmate: debug
